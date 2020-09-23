@@ -15,13 +15,16 @@ class OwnerTable extends Component {
                 <OwnerForm />
 
                 <table >
+                    <thead>
                     <tr>
                         <th>Name</th>
                         <th>Number of Pets</th>
                         <th>Actions</th>
                     </tr>
-                   
-             
+                    </thead>
+                   <tbody>
+                       <tr></tr>
+                   </tbody>
                 </table>
             </div>
         );
