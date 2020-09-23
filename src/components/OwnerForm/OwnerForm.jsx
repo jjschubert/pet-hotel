@@ -14,11 +14,16 @@ class OwnerForm extends Component {
     console.log(this.state)
   }
 
+  addOwner = () => {
+    event.preventDefault();
+    console.log(this.state)
+  }
+
   render() {
     return (
       <div>
         <h2>Add Owner</h2>
-        <form>
+        <form onSubmit={this.addOwner}>
         <input type='text' placeholder='Owner Name' onChange={(event) => this.handleChange(event)} />
         <button type='submit' >Submit</button>
         </form>
