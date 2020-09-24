@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class ownerListItem extends Component {
     render() {
         return (
-            <div>
-                
-            </div>
+            <tr></tr>
         );
     }
 }
 
-export default ownerListItem;
+const mapReduxStateToProps = reduxState => ({
+    reduxState
+});
+
+export default connect(mapReduxStateToProps)(ownerListItem);
