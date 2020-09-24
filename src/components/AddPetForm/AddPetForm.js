@@ -8,21 +8,19 @@ class AddPetForm extends Component {
         name: '',
         color: '',
         breed: '',
-        owner: ''
+        owner_id: 0
     }
 
-   
-    componentDidMount(){
+    componentDidMount() {
         this.getOwners();
     }
 
-    
-
-    //get request for owners
+    //get request for owners. will make sure that owners 
+    //are then in the ownerReducer regardless of if they've
+    //gone to the owner form or not
     getOwners = () => {
         axios.get({ type: 'FETCH_OWNERS' })
     }
-
 
     //functions that will handle the collection of info
     //from the form
@@ -44,35 +42,40 @@ class AddPetForm extends Component {
         })
     }
 
-    handleOwner = (event) => {
-        switch (event.target.value) {
-            case 'owner':
-                this.setState({
-                    owner: event.target.value
-                })
-                break;
-            default:
-        }
+
+    handleOwnerId = (event) => {
+        console.log(event.target.value)
+        this.setState({
+            owner_id: event.target.value
+        })
     }
 
     //submit function, collects data and sends to redux
-    handleSubmit = () => {
-        this.props.dispatch({ type: 'ADD_PET', payload: this.state})
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.state)
+        this.props.dispatch({ type: 'ADD_PET', payload: this.state })
     }
 
     render() {
         return (
             <div>
                 <h2>Add Pet</h2>
-                <form>
-                <input placeholder="Pet Name" onChange={this.handleName}></input>
-                <input placeholder="Pet Color" onChange={this.handleColor}></input>
-                <input placeholder="Pet Breed" onChange={this.handleBreed}></input>
-                {/* will need to put in pet owner name from redux */}
-                <select name="genres" onChange={this.handleOwner}>
-                    <option value='owner'>PET OWNER NAME(this will need to change)</option>
-                </select>
-                <button onClick={this.handleSubmit}>Submit</button>
+                <form onSubmit={(event) => this.handleSubmit(event)}>
+                    <input placeholder="Pet Name" onChange={this.handleName}></input>
+                    <input placeholder="Pet Color" onChange={this.handleColor}></input>
+                    <input placeholder="Pet Breed" onChange={this.handleBreed}></input>
+                    <select name="owners"  onChange={(event) => this.handleOwnerId(event)}>
+                        <option value="" selected disabled hidden>Choose Pet Owner</option>
+                        {this.props.reduxState.ownerReducer.map((owner) => {
+                            return (
+                                <option key={owner.name} value={owner.owner_id}>
+                                    {owner.name}
+                                </option>
+                            )
+                        })}
+                    </select>
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         );
