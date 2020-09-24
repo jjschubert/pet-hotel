@@ -87,7 +87,19 @@ const petsReducer = (state = [], action) => {
   }
 }
 
-const ownerReducer = (state = [], action) => {
+const owners = [
+  {
+  name: 'tim',
+  owner_id: 1
+  },
+  {
+    name: 'riley',
+    owner_id: 2
+  }
+
+]
+
+const ownerReducer = (state = owners, action) => {
   switch (action.type) {
     case 'SET_OWNERS':
       return action.payload
