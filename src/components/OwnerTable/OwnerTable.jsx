@@ -9,7 +9,11 @@ class OwnerTable extends Component {
         heading: 'Class Component',
     };
 
+    
+
     render() {
+        const ownerList = [ {id: 1, name: 'Ben'}, {id: 2, name: 'Amy'}]
+
         return (
             <div>
                 <h2>Manage Owners</h2>
@@ -24,9 +28,19 @@ class OwnerTable extends Component {
                     </tr>
                     </thead>
                    <tbody>
-                       {this.props.reduxState.ownerReducer.map((owner) => {
+                       {/* uncomment this to use reducer data */}
+                       {/* {this.props.reduxState.ownerReducer.map((owner) => {
                            return(
                                <OwnerItem key={owner.id} />
+                           )
+                       })} */}
+                       {ownerList.map((owner) => {
+                           return(
+                            <tr>
+                            <td>{owner.name}</td>
+                            <td>Pet #</td>
+                            <td>Delete</td>
+                        </tr>
                            )
                        })}
                        <tr></tr>
