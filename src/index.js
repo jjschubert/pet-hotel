@@ -41,6 +41,7 @@ function* addPet(action) {
 
 function* addOwner(action) {
   try {
+    console.log(action.payload)
       yield axios.post('/owners', action.payload)
       yield put ({type: 'FETCH_OWNERS'})
   } catch (error) {
@@ -124,7 +125,7 @@ function* rootSaga() {
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
-const storeInstance = createStore(
+const reduxStore = createStore(
   combineReducers({
     petsReducer,
     ownerReducer
@@ -136,7 +137,7 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render( <Provider store={storeInstance}> <App /></Provider>,
+ReactDOM.render( <Provider store={reduxStore}> <App /></Provider>,
   document.getElementById('root')
 );
 serviceWorker.unregister();

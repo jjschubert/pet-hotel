@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 // import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class OwnerForm extends Component {
@@ -17,6 +17,7 @@ class OwnerForm extends Component {
   addOwner = (event) => {
     event.preventDefault();
     console.log(this.state)
+    this.props.dispatch({type: 'ADD_OWNER', payload: this.state})
   }
 
   render() {
@@ -32,4 +33,9 @@ class OwnerForm extends Component {
   }
 }
 
-export default OwnerForm
+const mapReduxStateToProps = reduxState => ({
+  reduxState
+});
+
+
+export default connect(mapReduxStateToProps)(OwnerForm)

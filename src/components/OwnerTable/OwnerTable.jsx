@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import mapStoreToProps from '../../redux/mapStoreToProps';
+import { connect } from 'react-redux';
 import OwnerForm from '../OwnerForm/OwnerForm.jsx'
+import OwnerItem from '../OwnerTable/OwnerItem'
 
 class OwnerTable extends Component {
+
     state = {
         heading: 'Class Component',
     };
@@ -23,6 +24,11 @@ class OwnerTable extends Component {
                     </tr>
                     </thead>
                    <tbody>
+                       {this.props.reduxState.ownerReducer.map((owner) => {
+                           return(
+                               <OwnerItem key={owner.id} />
+                           )
+                       })}
                        <tr></tr>
                    </tbody>
                 </table>
@@ -31,4 +37,9 @@ class OwnerTable extends Component {
     }
 }
 
-export default OwnerTable
+const mapReduxStateToProps = reduxState => ({
+    reduxState
+});
+
+
+export default connect(mapReduxStateToProps)(OwnerTable)
