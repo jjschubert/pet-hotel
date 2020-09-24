@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 class ownerListItem extends Component {
     render() {
         return (
-            <tr></tr>
+            <tr>
+                <td>{this.props.owner.name}</td>
+                <td>Pet #</td>
+                <td>Delete</td>
+            </tr>
         );
     }
 }
