@@ -66,7 +66,7 @@ class AddPetForm extends Component {
                     <input placeholder="Pet Color" onChange={this.handleColor}></input>
                     <input placeholder="Pet Breed" onChange={this.handleBreed}></input>
                     <select name="owners"  onChange={(event) => this.handleOwnerId(event)}>
-                        <option value="" selected disabled hidden>Choose Pet Owner</option>
+                        <option defaultValue="" selected disabled hidden>Choose Pet Owner</option>
                         {this.props.reduxState.ownerReducer.map((owner) => {
                             return (
                                 <option key={owner.name} value={owner.owner_id}>
