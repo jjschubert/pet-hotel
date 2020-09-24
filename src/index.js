@@ -65,6 +65,18 @@ function* deleteOwner(action) {
     console.log('error in deleteOwner', error)
   }
 }
+
+function* checkIn(action){
+  try{
+    yield axios.put(`/pets/${action.payload}`)
+    yield put ({ type: 'FETCH_PETS' })
+  } catch(error){
+    console.log('error checking in pet', error)
+  }
+}
+
+
+
 // reducers
 const petsReducer = (state = [], action) => {
   switch (action.type) {
@@ -94,6 +106,7 @@ function* rootSaga() {
     yield takeEvery('ADD_OWNER', addOwner)
     yield takeEvery('DELETE_PET', deletePet)
     yield takeEvery('DELETE_OWNER', deleteOwner)
+    yield takeEvery('CHECK_IN', checkIn)
 }
 
 // Create sagaMiddleware
