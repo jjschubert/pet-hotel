@@ -34,6 +34,7 @@ function* addPet(action) {
   try {
     yield axios.post('/pets', action.payload)
     yield put({type: 'FETCH_PETS'})
+    yield put({type: 'FETCH_OWNERS'})
   } catch (error) {
     console.log('error in addPet', error)
   }

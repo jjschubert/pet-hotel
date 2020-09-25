@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import PetList from '../PetList/PetList.js'
 
 class AddPetForm extends Component {
 
@@ -72,6 +73,8 @@ class AddPetForm extends Component {
                     </select>
                     <button type="submit">Submit</button>
                 </form>
+                <br/>
+                <PetList />
             </div>
         );
     }
