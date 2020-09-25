@@ -1,32 +1,27 @@
-import axios from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 class AddPetForm extends Component {
 
     state = {
-        name: '',
+        pet_name: '',
         color: '',
         breed: '',
         owner_id: 0
     }
 
     componentDidMount() {
-        this.getOwners();
+       //get request for owners in dropdown
+       this.props.dispatch({type: 'FETCH_OWNERS'})
     }
 
-    //get request for owners. will make sure that owners 
-    //are then in the ownerReducer regardless of if they've
-    //gone to the owner form or not
-    getOwners = () => {
-        axios.get({ type: 'FETCH_OWNERS' })
-    }
+    
 
     //functions that will handle the collection of info
     //from the form
     handleName = (event) => {
         this.setState({
-            name: event.target.value
+            pet_name: event.target.value
         })
     }
 
@@ -66,10 +61,10 @@ class AddPetForm extends Component {
                     <input placeholder="Pet Color" onChange={this.handleColor}></input>
                     <input placeholder="Pet Breed" onChange={this.handleBreed}></input>
                     <select name="owners"  onChange={(event) => this.handleOwnerId(event)}>
-                        <option defaultValue="" selected disabled hidden>Choose Pet Owner</option>
-                        {this.props.reduxState.ownerReducer.map((owner) => {
+                        <option defaultValue="" >Choose Pet Owner</option>
+                        {this.props.reduxState.ownerReducer.map((owner, i) => {
                             return (
-                                <option key={owner.name} value={owner.owner_id}>
+                                <option key={i} value={owner.id}>
                                     {owner.name}
                                 </option>
                             )
@@ -82,7 +77,7 @@ class AddPetForm extends Component {
     }
 }
 
-const mapReduxStateToProps = reduxState => ({
+const mapReduxStateToProps = (reduxState) => ({
     reduxState
 });
 

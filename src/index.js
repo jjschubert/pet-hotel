@@ -77,28 +77,28 @@ function* checkIn(action){
 }
 
 
-const pets = [
-  {
-    id: 1,
-    owner: 'Riley',
-    name: 'Bella',
-    breed: 'Shorthair',
-    color: 'orange',
-    checked_in: true
-  },
-  {
-    id: 2,
-    owner: 'Jenni',
-    name: 'Doggo',
-    breed: 'Pupper',
-    color: 'brown',
-    checked_in: false
-  }
-]
+// const pets = [
+//   {
+//     id: 1,
+//     owner: 'Riley',
+//     name: 'Bella',
+//     breed: 'Shorthair',
+//     color: 'orange',
+//     checked_in: true
+//   },
+//   {
+//     id: 2,
+//     owner: 'Jenni',
+//     name: 'Doggo',
+//     breed: 'Pupper',
+//     color: 'brown',
+//     checked_in: false
+//   }
+// ]
 
 
 // reducers
-const petsReducer = (state = pets, action) => {
+const petsReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_PETS':
       return action.payload

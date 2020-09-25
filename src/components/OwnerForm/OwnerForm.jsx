@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 
 class OwnerForm extends Component {
   state = {
-    ownerName: '',
+    name: '',
   };
 
   handleChange = (event) => {
     this.setState({
-        ownerName: event.target.value
+      name: event.target.value
     })
     console.log(this.state)
   }
