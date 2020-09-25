@@ -3,9 +3,13 @@ import { connect } from 'react-redux'
 import PetListItem from './PetListItem.js'
 
 class PetList extends Component {
+
+    componentDidMount () {
+        this.props.dispatch({type: 'FETCH_PETS'})
+    }
     render() {
         return (
-            <div>
+            <div style={{display: 'flex',  alignItems: 'center',  flexDirection: 'column',}}>
                 <table>
                     <thead>
                         <tr>
@@ -18,9 +22,9 @@ class PetList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.reduxState.petsReducer.map((pet) => {
+                        {this.props.reduxState.petsReducer.map((pet, i) => {
                             return (
-                                <tr key={pet.id}>
+                                <tr key={i}>
                                     <PetListItem pet={pet} />
                                 </tr>
                             )

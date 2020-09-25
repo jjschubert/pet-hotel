@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class ownerListItem extends Component {
-    render() {
-        return (
-            <tr>
-                <td>{this.props.owner.name}</td>
-                <td>Pet #</td>
-                <td>Delete</td>
-            </tr>
-        );
+const ownerListItem = ({ owner, dispatch }) => {
+    const deleteOwner = () => {
+        dispatch({type: '', payload: owner.id})
     }
+    return (
+        <tr>
+            <td>{owner.name}</td>
+            <td>{owner.count}</td>
+            <td> <button onClick={deleteOwner}> Delete</button></td>
+        </tr>
+
+    );
+
 }
 
-const mapReduxStateToProps = reduxState => ({
-    reduxState
-});
+// const mapReduxStateToProps = reduxState => ({
+//     reduxState
+// });
 
-export default connect(mapReduxStateToProps)(ownerListItem);
+export default connect()(ownerListItem);
+
+

@@ -20,21 +20,15 @@ class petListItem extends Component {
             petId: idToUpdate,
             isCheckedIn: !this.state.isCheckedIn
         })
-        this.testFunction();
-    }
-    
-    testFunction(){
-        console.log('in test function', this.state)
-        //THIS IS NOT WORKING RIGHT, THE STATE IS ONE BEHIND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // this.props.dispatch ({ type: 'CHECK_IN', payload: this.state})
     }
 
     render() {
+        console.log('in test function', this.state)
 
         return (
             <>
-                <td>{this.props.pet.owner}</td>
                 <td>{this.props.pet.name}</td>
+                <td>{this.props.pet.pet_name}</td>
                 <td>{this.props.pet.breed}</td>
                 <td>{this.props.pet.color}</td>
                 {this.state.isCheckedIn ?
